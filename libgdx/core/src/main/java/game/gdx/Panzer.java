@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class Panzer {
-    private final KeyboardAdapter keyboardAdapter;
     private final Vector2 position = new Vector2();
     private final Vector2 angle = new Vector2();
 
@@ -20,8 +19,7 @@ public class Panzer {
 
     private int speed = 5;
 
-    public Panzer(KeyboardAdapter keyboardAdapter, Texture texture, float x, float y) {
-        this.keyboardAdapter = keyboardAdapter;
+    public Panzer(Texture texture, float x, float y) {
         this.texture = texture;
         textureRegion = new TextureRegion(texture);
         position.set(x, y);
@@ -33,10 +31,6 @@ public class Panzer {
 
     public void dispose() {
         texture.dispose();
-    }
-
-    public void moveTo() {
-        position.add(keyboardAdapter.getDirection(speed));
     }
 
     public void moveTo(Vector2 to) {

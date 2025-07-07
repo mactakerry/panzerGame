@@ -26,12 +26,12 @@ public class Starter extends ApplicationAdapter {
 
         Gdx.input.setInputProcessor(keyboardAdapter);
         batch = new SpriteBatch();
-        me = new Panzer(keyboardAdapter, new Texture("panzer_me.png"), 100, 200);
+        me = new Panzer(new Texture("panzer_me.png"), 100, 200);
 
         List<Panzer> newEnemies = IntStream.range(0, 15).mapToObj(i -> {
             int x = MathUtils.random(Gdx.graphics.getWidth());
             int y = MathUtils.random(Gdx.graphics.getHeight());
-            return new Panzer(keyboardAdapter, new Texture("panzer_enemy.png"), x, y);
+            return new Panzer(new Texture("panzer_enemy.png"), x, y);
         }).collect(Collectors.toList());
 
         enemies.addAll(newEnemies);
@@ -39,7 +39,7 @@ public class Starter extends ApplicationAdapter {
 
     @Override
     public void render() {
-        me.moveTo();
+        me.moveTo(keyboardAdapter.getDirection(5));
         me.rotateTo(keyboardAdapter.getMousePosition());
 
         ScreenUtils.clear(1f, 1f, 1f, 1f);
